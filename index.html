@@ -709,6 +709,167 @@ textarea.field:focus { border-color: var(--c-blue); }
   border: 1px solid rgba(155,114,232,.22);
   border-radius: var(--radius-md);
 }
+
+/* ─── BOTTOM NAV (mobile) ────────────────────────────────── */
+#bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 58px;
+  background: rgba(10,12,15,.97);
+  border-top: 1px solid var(--c-border);
+  backdrop-filter: blur(14px);
+  z-index: 100;
+  align-items: stretch;
+}
+.bnav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border: none;
+  background: none;
+  color: var(--c-muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  cursor: pointer;
+  transition: color .15s;
+  padding: 6px 4px;
+  -webkit-tap-highlight-color: transparent;
+}
+.bnav-item svg { width: 18px; height: 18px; }
+.bnav-item.active { color: var(--c-blue); }
+
+/* ─── API CARD (mobile table replacement) ────────────────── */
+.api-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: border-color .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.api-card:active { border-color: var(--c-blue); }
+.api-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  gap: 8px;
+}
+.api-card-name {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-blue);
+}
+.api-card-dll {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--c-purple);
+  background: var(--c-purple-dim);
+  border: 1px solid rgba(155,114,232,.22);
+  border-radius: var(--radius-sm);
+  padding: 2px 7px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.api-card-desc {
+  font-size: 12.5px;
+  color: var(--c-muted);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.api-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.api-card-risk {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid;
+  letter-spacing: .04em;
+}
+.api-cards-wrap { display: none; }
+
+/* ─── MOBILE BREAKPOINT ──────────────────────────────────── */
+@media (max-width: 768px) {
+  #topbar { padding: 0 16px; height: 48px; gap: 0; }
+  .nav { display: none; }
+  .topbar-meta { display: none; }
+  #bottom-nav { display: flex; }
+
+  .page { padding: 14px 14px 72px; }
+
+  .stat-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .stat-card { min-width: unset; }
+  .stat-card-value { font-size: 16px; }
+
+  .toolbar { gap: 6px; }
+  .search-wrap { min-width: 100%; order: -1; }
+  .select-field { flex: 1; font-size: 12px; padding: 9px 10px; }
+  .result-count { font-size: 11px; padding: 9px 10px; }
+
+  .action-bar .btn { flex: 1; text-align: center; padding: 9px 10px; }
+
+  .cat-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+  }
+  .cat-bar::-webkit-scrollbar { display: none; }
+  .cat-pill { white-space: nowrap; flex-shrink: 0; padding: 6px 14px; font-size: 12px; }
+
+  /* swap table for cards */
+  .table-wrap { display: none; }
+  .api-cards-wrap { display: block; }
+
+  .chains-grid { grid-template-columns: 1fr; gap: 8px; }
+  .chain-card { padding: 14px 14px; }
+  .chain-card-name { font-size: 13px; }
+  .chain-flow-node { font-size: 11px; padding: 4px 9px; }
+
+  .page-header { margin-bottom: 14px; }
+  .page-header h1 { font-size: 15px; }
+
+  .modal-backdrop { padding: 0; align-items: flex-end; }
+  .modal {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    max-height: 92vh;
+    padding: 20px 18px 36px;
+    max-width: 100%;
+  }
+  .modal-title { font-size: 17px; }
+  .modal-close { top: 14px; right: 14px; }
+
+  .pe-panel { padding: 14px; }
+  textarea.field { height: 150px; font-size: 13px; }
+  .pe-btn { padding: 12px; font-size: 13px; }
+
+  .heatmap-controls .select-field { flex: 1; }
+  .hm-cell { padding: 6px 10px; font-size: 11px; }
+
+  .code-out { font-size: 10.5px; max-height: 240px; }
+  .export-tab { padding: 6px 10px; font-size: 11px; }
+}
+
+@media (max-width: 380px) {
+  .stat-strip { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -723,6 +884,9 @@ textarea.field:focus { border-color: var(--c-blue); }
     <nav class="nav" id="nav"></nav>
     <div class="topbar-meta" id="topbar-meta"></div>
   </header>
+
+  <!-- BOTTOM NAV (mobile only) -->
+  <nav id="bottom-nav"></nav>
 
   <!-- PAGES -->
   <main>
@@ -1044,21 +1208,42 @@ document.addEventListener('keydown', e => {
 const Router = {
   pages: ['database', 'chains', 'pe', 'heatmap'],
   labels: { database: 'API Database', chains: 'Attack Chains', pe: 'PE Analyzer', heatmap: 'Risk Heatmap' },
+  shortLabels: { database: 'Database', chains: 'Chains', pe: 'PE Scan', heatmap: 'Heatmap' },
+  icons: {
+    database: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>`,
+    chains:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>`,
+    pe:       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M10 13l2 2 4-4"/></svg>`,
+    heatmap:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>`,
+  },
 
   go(page) {
     State.page = page;
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.querySelectorAll('.bnav-item').forEach(n => n.classList.remove('active'));
     $(`page-${page}`).classList.add('active');
     document.querySelector(`.nav-item[data-page="${page}"]`)?.classList.add('active');
+    document.querySelector(`.bnav-item[data-page-b="${page}"]`)?.classList.add('active');
+    // scroll to top on page change (important on mobile)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     Renderer[page]?.();
   },
 
   buildNav() {
     const nav = $('nav');
+    const bnav = $('bottom-nav');
     this.pages.forEach(p => {
+      // desktop tab
       const btn = h('button', { class: 'nav-item', 'data-page': p, onClick: () => this.go(p) }, this.labels[p]);
       nav.appendChild(btn);
+
+      // mobile bottom nav item
+      const bBtn = document.createElement('button');
+      bBtn.className = 'bnav-item';
+      bBtn.setAttribute('data-page-b', p);
+      bBtn.innerHTML = this.icons[p] + `<span>${this.shortLabels[p]}</span>`;
+      bBtn.addEventListener('click', () => this.go(p));
+      bnav.appendChild(bBtn);
     });
   }
 };
@@ -1197,6 +1382,10 @@ const Renderer = {
     tableWrap.appendChild(table);
     root.appendChild(tableWrap);
 
+    // mobile card view
+    const cardsWrap = h('div', { class: 'api-cards-wrap', id: 'api-cards-wrap' });
+    root.appendChild(cardsWrap);
+
     this.updateTable();
   },
 
@@ -1219,6 +1408,7 @@ const Renderer = {
   updateTable() {
     const filtered = this._filteredApis();
     const tbody = $('api-tbody');
+    const cardsWrap = $('api-cards-wrap');
     const rc = $('result-count');
     const sb = $('sel-badge');
     if (rc) rc.textContent = `${filtered.length} of ${DB.apis.length}`;
@@ -1290,6 +1480,48 @@ const Renderer = {
       tr.append(cbTd, nameTd, dllTd, catsTd, mitreTd, riskTd, descTd);
       tbody.appendChild(tr);
     });
+
+    // ── mobile cards ──────────────────────────────────────
+    if (cardsWrap) {
+      cardsWrap.innerHTML = '';
+      if (!filtered.length) {
+        cardsWrap.appendChild(h('div', { class: 'no-data' }, 'No APIs match your filters.'));
+      } else {
+        filtered.forEach(api => {
+          const rc2 = riskColor(api.risk);
+          const card = h('div', { class: 'api-card' });
+          card.addEventListener('click', () => this.showDetail(api.name));
+
+          const top = h('div', { class: 'api-card-top' });
+          top.appendChild(h('span', { class: 'api-card-name' }, api.name));
+          top.appendChild(h('span', { class: 'api-card-dll' }, api.dll));
+
+          const desc = h('div', { class: 'api-card-desc' }, api.desc);
+
+          const meta = h('div', { class: 'api-card-meta' });
+          const riskBadge = h('span', { class: 'api-card-risk' }, api.risk);
+          riskBadge.style.color = rc2;
+          riskBadge.style.borderColor = rc2 + '44';
+          riskBadge.style.background = rc2 + '14';
+          meta.appendChild(riskBadge);
+
+          api.cats.forEach(cat => {
+            const c = catColor(cat);
+            const tag = h('span', { class: 'tag' }, cat);
+            tag.style.color = c; tag.style.borderColor = c + '44'; tag.style.background = c + '14';
+            meta.appendChild(tag);
+          });
+
+          api.mitre.forEach(m => {
+            const tag = h('span', { class: 'mitre-tag' }, m);
+            meta.appendChild(tag);
+          });
+
+          card.append(top, desc, meta);
+          cardsWrap.appendChild(card);
+        });
+      }
+    }
   },
 
   /* ── DETAIL MODAL ──────────────────────────────────────── */
