@@ -3,7 +3,7 @@
 A self-contained Windows API intelligence platform for malware analysts and threat researchers. Maps Windows API functions to attack techniques, detects malicious import patterns, and generates detection rules. All in a single HTML file with no dependencies.
 
 ---
-<img width="1913" height="918" alt="image" src="https://github.com/user-attachments/assets/7c6c9450-58db-45cd-9a17-fa706e9a9b4d" />
+<img width="1881" height="916" alt="image" src="https://github.com/user-attachments/assets/9d7739a0-5364-433f-8413-3beb88c5bde3" />
 
 
 ## What it does
